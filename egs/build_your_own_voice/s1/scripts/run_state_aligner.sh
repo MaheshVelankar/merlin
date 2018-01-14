@@ -34,19 +34,22 @@ if [ $status_prev_step -eq 1 ]; then
     echo "Please check scripts/prepare_labels_from_txt.sh"
     exit 1
 fi
-
-### tools required
-if [[ ! -d "${HTKDIR}" ]]; then
-    echo "Please configure path to HTK tools in $global_config_file !!"
-    exit 1
-fi
-
-### do forced alignment using HVite 
-echo "forced-alignment using HTK tools..."
-
-sed -i s#'HTKDIR =.*'#'HTKDIR = "'$HTKDIR'"'# $aligner/forced_alignment.py
-sed -i s#'work_dir =.*'#'work_dir = "'$WorkDir/$lab_dir'"'# $aligner/forced_alignment.py
-sed -i s#'wav_dir =.*'#'wav_dir = "'$WorkDir/$wav_dir'"'# $aligner/forced_alignment.py
+######
+######### tools required
+######if [[ ! -d "${HTKDIR}" ]]; then
+######    echo "Please configure path to HTK tools in $global_config_file !!"
+######    exit 1
+######fi
+######
+######### do forced alignment using HVite 
+######echo "forced-alignment using HTK tools..."
+######
+######sed -i s#'HTKDIR =.*'#'HTKDIR = "'$HTKDIR'"'# $aligner/forced_alignment.py
+######sed -i s#'work_dir =.*'#'work_dir = "'$WorkDir/$lab_dir'"'# $aligner/forced_alignment.py
+######sed -i s#'wav_dir =.*'#'wav_dir = "'$WorkDir/$wav_dir'"'# $aligner/forced_alignment.py
+######
+######echo "next will be forced aqlignment..... exiting now."
+######exit 0
 
 python $aligner/forced_alignment.py
 

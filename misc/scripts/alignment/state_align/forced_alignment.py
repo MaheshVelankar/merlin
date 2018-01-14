@@ -10,13 +10,14 @@ STATE_NUM=5
 F = str(0.01)
 SFAC = str(5.0)
 PRUNING = [str(i) for i in (250., 150., 2000.)]
+PRUNING2 = [str(i) for i in (250., 150., 5000.)]
 
 MACROS = 'macros'
 HMMDEFS = 'hmmdefs'
 VFLOORS = 'vFloors'
 
 ##
-HTKDIR = path/to/tools/htk
+HTKDIR = "/mnt/disks/disk1/gits/festcat-voice-builder/tools/bin"
 HCompV = os.path.join(HTKDIR, 'HCompV')
 HCopy  = os.path.join(HTKDIR, 'HCopy' )
 HERest = os.path.join(HTKDIR, 'HERest')
@@ -314,12 +315,12 @@ NUMCEPS = 12
         print(time.strftime("%c"))
         self.align_mlf = os.path.join(work_dir, 'mono_align.mlf')
 
-        check_call([HVite, '-a', '-f', '-m', '-y', 'lab', '-o', 'SM',
+        check_call([HVite, '-a', '-f', '-m', '-y', 'lab', '-o', 'SM', '-T', '0001',
                     '-i', self.align_mlf, '-L', self.mono_lab_dir,
                     '-C', self.cfg, '-S', self.train_scp,
                     '-H', os.path.join(self.cur_dir, MACROS),
                     '-H', os.path.join(self.cur_dir, HMMDEFS),
-                    '-I', self.phoneme_mlf, '-t'] + PRUNING +
+                    '-I', self.phoneme_mlf, '-t'] + PRUNING2 +
                    ['-s', SFAC, self.phoneme_map, self.phonemes])
 
         self._postprocess(self.align_mlf, lab_align_dir)
@@ -360,9 +361,9 @@ NUMCEPS = 12
 
 if __name__ == '__main__':
 
-    work_dir = os.getcwd()
+    work_dir = "/mnt/disks/disk1/gits/merlin/egs/build_your_own_voice/s1/database/labels"
 
-    wav_dir = os.path.join(work_dir, 'slt_wav')
+    wav_dir = "/mnt/disks/disk1/gits/merlin/egs/build_your_own_voice/s1/database/wav"
     lab_dir = os.path.join(work_dir, 'label_no_align')
     lab_align_dir = os.path.join(work_dir, 'label_state_align')
 

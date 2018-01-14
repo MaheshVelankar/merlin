@@ -48,10 +48,10 @@ python ${frontend}/utils/genScmFile.py \
                             ${out_dir}/$scheme_file \
                             ${out_dir}/$file_id_scp 
 
-### generate utt from scheme file
-echo "generating utts from scheme file"
-${FESTDIR}/bin/festival -b ${out_dir}/$scheme_file
-
+####### generate utt from scheme file
+####echo "generating utts from scheme file"
+####${FESTDIR}/bin/festival -b ${out_dir}/$scheme_file
+####
 ### convert festival utt to lab
 echo "converting festival utts to labels..."
 ${frontend}/festival_utt_to_lab/make_labels \
@@ -69,7 +69,7 @@ if [ "$train" = true ]; then
                             phone_align \
                             ${out_dir}/$file_id_scp 0
     ### remove any un-necessary files
-    rm -rf ${out_dir}/prompt-lab
+####    rm -rf ${out_dir}/prompt-lab
 else
     python ${frontend}/utils/normalize_lab_for_merlin.py \
                             ${out_dir}/prompt-lab/full \
@@ -77,7 +77,7 @@ else
                             ${Labels} \
                             ${out_dir}/$file_id_scp 0
     ### remove any un-necessary files
-    rm -rf ${out_dir}/prompt-lab/{full,mono,tmp}
+####    rm -rf ${out_dir}/prompt-lab/{full,mono,tmp}
     
    echo "Labels are ready in: ${out_dir}/prompt-lab !!"
 fi

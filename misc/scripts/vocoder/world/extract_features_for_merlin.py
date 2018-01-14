@@ -172,6 +172,7 @@ def process(filename):
                                              f0_world_file, \
                                              os.path.join(sp_dir, file_id + '.sp'), \
                                              os.path.join(bap_dir, file_id + '.bapd'))
+    print('\n' + world_analysis_cmd)
     os.system(world_analysis_cmd)
 
     ### Extract f0 using reaper ###
@@ -181,12 +182,14 @@ def process(filename):
     ### convert f0 to lf0 ###
     sptk_x2x_da_cmd = "%s +da %s > %s" % (os.path.join(sptk, 'x2x'), f0_file, \
                                           os.path.join(f0_dir, file_id + '.f0a'))
+    print('\n' + sptk_x2x_da_cmd)
     os.system(sptk_x2x_da_cmd)
 
     sptk_x2x_af_cmd = "%s +af %s | %s > %s " % (os.path.join(sptk, 'x2x'), \
                                                 os.path.join(f0_dir, file_id + '.f0a'), \
                                                 os.path.join(sptk, 'sopr') + ' -magic 0.0 -LN -MAGIC -1.0E+10', \
                                                 os.path.join(lf0_dir, file_id + '.lf0'))
+    print('\n' + sptk_x2x_af_cmd)
     os.system(sptk_x2x_af_cmd)
 
     ### convert sp to mgc ###
@@ -197,12 +200,14 @@ def process(filename):
                                                         mcsize) + ' -l ' + str(
                                                         nFFTHalf) + ' -e 1.0E-8 -j 0 -f 0.0 -q 3 ', \
                                                     os.path.join(mgc_dir, file_id + '.mgc'))
+    print('\n' + sptk_x2x_df_cmd1)
     os.system(sptk_x2x_df_cmd1)
 
     ### convert bapd to bap ###
     sptk_x2x_df_cmd2 = "%s +df %s > %s " % (os.path.join(sptk, "x2x"), \
                                             os.path.join(bap_dir, file_id + ".bapd"), \
                                             os.path.join(bap_dir, file_id + '.bap'))
+    print('\n' + sptk_x2x_df_cmd2)
     os.system(sptk_x2x_df_cmd2)
 
 print("--- Feature extraction started ---")

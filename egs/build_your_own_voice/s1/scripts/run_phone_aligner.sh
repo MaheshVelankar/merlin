@@ -31,7 +31,7 @@ fi
 ### do forced alignment using ehmm in clustergen setup
 mkdir -p $lab_dir
 cd $lab_dir
-mkdir cmu_us_${Voice}
+mkdir -p cmu_us_${Voice}
 cd cmu_us_${Voice}
 
 $FESTVOXDIR/src/clustergen/setup_cg cmu us ${Voice} 
@@ -50,9 +50,9 @@ fi
 
 cp $WorkDir/$wav_dir/*.wav wav/
 
-./bin/do_build build_prompts 
-./bin/do_build label
-./bin/do_build build_utts
+#####./bin/do_build build_prompts 
+#####./bin/do_build label
+#####./bin/do_build build_utts
 
 cd ../
 

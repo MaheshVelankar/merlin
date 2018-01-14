@@ -150,6 +150,12 @@ class FilePaths(object):
                                   self.cfg.lf0_ext)
 
   def set_label_file_list(self):
+
+    print ('bld= ' + self.binary_label_dir)
+    print ('nld= ' + self.nn_label_dir)
+    print ('nlnd= ' + self.nn_label_norm_dir)
+    print ('ncnd= ' + self.nn_cmp_norm_dir)
+
     if self.cfg.GenTestList:
       self.in_label_align_file_list = prepare_file_path_list(
           self.test_id_list, self.cfg.in_label_align_dir, self.cfg.lab_ext,
